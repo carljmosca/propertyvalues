@@ -1,7 +1,7 @@
-# Minimal Dart Webapp
+# Property Values
 
-A mobile-friendly web app with routing, responsive CSS, and (optional) Sass
-support.
+A mobile-friendly web app designed to compute current property values given last sales price
+and inflation rates.
 
 This template features:
 
@@ -56,7 +56,6 @@ more scalable ways to manage views.
 ## Handing input
 
 Using `dart:html`, this template simply finds the necessary input fields
-via `querySelector` and binds to their keyUp events. Look inside
-`lub/reverser.dart` for an example.
+via `querySelector` and binds to their keyUp events.
 
 However, a real app framework will offer robust data binding.
