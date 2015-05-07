@@ -52,6 +52,7 @@
     <h4>Navigation</h4>
     <ul>
       <li><a href="/">Home</a></li>
+      <li><a href="/netproceeds">Net Proceeds</a></li>
       <li><a href="/about">About</a></li>
     </ul>
   </nav>
@@ -74,6 +75,36 @@
         Current:<br>
         <output id="estimatedValue"></output>
       </p>
+    </div>
+
+    <div id="netproceeds">
+      <p>Net Proceeds</p>
+      <p>Sales Price<br><input type="text" id="salesPrice"></p>
+      <p>First Deed<br><input type="text" id="firstDeed"></p>
+      <p>Second Deed<br><input type="text" id="secondDeed"></p>
+      <p>Other<br><input type="text" id="otherDeed"></p>
+      <p>Gross Equity<br><output id="grossEquity"></output></p>
+      <p>Listing Brokerage Fee<br><input type="text" id="listingBrokerageFeePct">
+      <output type="text" id="listingBrokerageFee"></output></p>
+      <p>Selling Brokerage Fee<br><input type="text" id="sellingBrokerageFeePct">
+      <output type="text" id="sellingBrokerageFee"></output></p>
+      <p>Prepayment Penalty<br><input type="text" id="prepaymentPenalty"></p>
+      <p>Unpaid interest on loan balance<br><input type="text" id="unpaidLoanBalanceInterest"></p>
+      <p>Lien release fee<br><input type="text" id="lienReleaseFee"></p>
+      <p>Grantor's tax<br><output type="text" id="grantorsTax"></output></p>
+      <p>Unpaid assessments/taxes<br><input type="text" id="unpaidAssessmentsTaxes"></p>
+      <p>Well/septic inspection<br><input type="text" id="wellSepticInspection"></p>
+      <p>Termite inspection<br><input type="text" id="termiteInspection"></p>
+      <p>Inspection issues<br><input type="text" id="inspectionIssues"></p>
+      <p>Purchaser closing costs<br><input type="text" id="purchaserClosingCosts"></p>
+      <p>Home warranty<br><input type="text" id="homeWarranty"></p>
+      <p>Miscellaneous <br><input type="text" id="miscellaneous"></p>
+      <p>Title service<br><input type="text" id="titleService"></p>
+      <p>HOA documents<br><input type="text" id="hoaDocuments"></p>
+      <p>Attorney fees<br><input type="text" id="attorneyFees"></p>
+      <p>Credits due at closing<br><output type="text" id="creditsDueAtClosing"></output></p>
+      <p>Total Estimated Proceeds<br>
+      <output type="text" id="totalEstimatedProceeds"></output></p>
     </div>
 
     <div id="about" style="display:none">
