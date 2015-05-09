@@ -5,9 +5,12 @@ import 'dart:html';
 InputElement get _lastSalesPrice => querySelector('#lastSalesPrice');
 DateInputElement get _lastSalesDate => querySelector('#lastSalesDate');
 Element get _estimatedValue => querySelector('#estimatedValue');
+Element get _details => querySelector("#details");
+InputElement get _showDetails => querySelector("#showDetails");
+
 var InflationRates = [
-  1.0, 1.0, 7.9, 17.4, 18, 14.6, // 1914
-  15.6, -10.5, -6.1, 1.8, 0, 2.3, 1.1, -1.7, -1.7, 0          // 1920
+  1.0, 1.0, 7.9, 17.4, 18, 14.6,                              // 1914
+  15.6, -10.5, -6.1, 1.8, 0, 2.3, 1.1, -1.7, -1.7, 0,         // 1920
   -2.3, -9, -9.9, -5.1, 3.1, 2.2, 1.5, 3.6, -2.1, -1.4,       // 1930
   0.7, 5, 10.9, 6.1, 1.7, 2.3, 8.3, 14.4, 8.1, -1.2,          // 1940
   1.3, 7.9, 1.9, 0.8, 0.7, -0.4, 1.5, 3.3, 2.8, 0.7,          // 1950
@@ -30,6 +33,11 @@ initCalculator() {
   
   _lastSalesPrice.onKeyUp.listen((_) => _calculate());
   _lastSalesDate.onChange.listen((_) => _calculate());
+  _showDetails.onChange.listen((_) => _showHideDetails());
+}
+
+_showHideDetails() {
+  _details.hidden = !_showDetails.checked;
 }
 
 _calculate() {
@@ -37,11 +45,19 @@ _calculate() {
     var lastSalesPrice = double.parse(_lastSalesPrice.value);
     var currentPrice = lastSalesPrice;
     var currentDate = new DateTime.now();
+    var details = "";
+    var index = 0;
     if (_lastSalesDate.valueAsDate.year < FIRST_YEAR || _lastSalesDate.valueAsDate.year > LAST_YEAR) {
       return;
     }
-    for (var year = _lastSalesDate.valueAsDate.year; year <= currentDate.year && year < LAST_YEAR; year++) {
-      currentPrice += currentPrice * (InflationRates[year - FIRST_YEAR] / 100);
+    details = "<table><th>Year</th><th>Rate</th><th>Price</th>";
+    for (var year = (_lastSalesDate.valueAsDate.year + 1); year <= currentDate.year && year <= LAST_YEAR; year++) {
+      index = year - FIRST_YEAR;
+      currentPrice = currentPrice + (currentPrice * (InflationRates[index] / 100));
+      details += "<tr><td>" + year.toString() + "</td><td>" + InflationRates[index].toString() 
+          + "</td><td>"
+           + currentPrice.toStringAsFixed(0) + "</td></tr>";
+      _details.innerHtml = details + "</table>";
     }
     _estimatedValue.text = currentPrice.toStringAsFixed(0);
   } catch (FormatException) {}
